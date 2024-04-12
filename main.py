@@ -6,10 +6,9 @@ Created on Tue Apr  9 10:53:11 2024
 """
 
 import sys
-sys.path.append('C:\Users\cdoss\Desktop')
+sys.path.append('/home/redhorn/projects/personal-finance-project/personal-finance-game')
 
-from pf-classes import Student
-import pf-classes
+from pfclasses import Student
 import time
 import random
 
