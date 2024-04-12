@@ -6,9 +6,11 @@ Created on Tue Apr  9 10:53:11 2024
 """
 
 import sys
-sys.path.append('/home/redhorn/projects/personal-finance-project/personal-finance-game')
+import os
+cwd = os.getcwd()
+sys.path.append(cwd)
 
-from pfclasses import Student
+from pfclasses import * # Student, Stock, generate_student
 import time
 import random
 
@@ -46,6 +48,7 @@ while n:
         print("Current game state:")
         for key, val in classroom.items():
             print(key.title() + ' has an income of $' + str(val[0]) + ', a bank balance of $' + str(val[1]) + ', owes $' + str(val[2]) + ', and owns ' + str(val[3]))
+            time.sleep(2)
         time.sleep(2)
     elif user_input == '4':
         print("Chose to export game state")
