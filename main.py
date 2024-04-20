@@ -10,7 +10,7 @@ import os
 cwd = os.getcwd()
 sys.path.append(cwd)
 
-from pfclasses import * # Student, Stock, generate_student
+import pfclasses as pfc # Student, Stock, generate_student
 import time
 import random
 
@@ -40,7 +40,7 @@ while n:
             if new_student == 'done':
                 student_generator = False
             else:
-                classroom.update(generate_student(new_student))
+                classroom.update(pfc.generate_student(new_student))
     elif user_input == '2':
         print("Chose to edit current student")
         time.sleep(2)

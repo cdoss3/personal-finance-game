@@ -5,17 +5,18 @@ Created on Fri Mar 22 08:58:30 2024
 @author: cdoss
 """
 import random
-import time
 
 class Student:
     def __init__(self, name, income=random.randint(30000, 70000), 
-                 balance=random.randint(-2000, 2000), assets={}, 
-                 debt=random.randint(0, 5000)):
+                 balance=random.randint(1000, 2000), assets={}, 
+                 debt=random.randint(0, 5000), 
+                 credit_score=random.randint(600,700)):
         self.name = name
         self.balance = balance
         self.income = income
         self.assets = assets
         self.debt = debt
+        self.credit_score = credit_score
         return None
     
     def randomize_income(self, min, max) -> None:
@@ -34,7 +35,79 @@ class Student:
             self.assets.update({'car': 5000})
         elif rng > 0.3:
             self.assets.update({'car': 2000})
-            
+    
+    def add_cash(self, amt):
+        self.balance += amt
+    
+    def sub_cash(self, amt):
+        self.balance -= amt
+
+class Calendar:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+    
+    def next_day(self):
+        """
+        Advance the calendar by a day. Change month and year if necessary.
+
+        Parameters
+        ----------
+        calendar : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        calendar : TYPE
+            DESCRIPTION.
+
+        """
+        
+        if self.day != 28:
+            self.day += 1
+        else:
+            if self.month == 'Jan':
+                self.month = 'Feb'
+                self.day = 1
+            elif self.month == 'Feb':
+                self.month = 'Mar'
+                self.day = 1
+            elif self.month == 'Mar':
+                self.month = 'Apr'
+                self.day = 1
+            elif self.month == 'Apr':
+                self.month = 'May'
+                self.day = 1
+            elif self.month == 'May':
+                self.month = 'June'
+                self.day = 1
+            elif self.month == 'June':
+                self.month = 'July'
+                self.day = 1
+            elif self.month == 'July':
+                self.month = 'August'
+                self.day = 1
+            elif self.month == 'August':
+                self.month = 'Sept'
+                self.day = 1
+            elif self.month == 'Sept':
+                self.month = 'Oct'
+                self.day = 1
+            elif self.month == 'Oct':
+                self.month = 'Nov'
+                self.day = 1
+            elif self.month == 'Nov':
+                self.month = 'Dec'
+                self.day = 1
+            elif self.month == 'Dec':
+                self.month = 'Jan'
+                self.day = 1
+                self.year += 1
+caltest = Calendar(1, 'Jan', 1)
+for k in range(4324):
+    print("It's " + caltest.month + " " + str(caltest.day) + ", year " + str(caltest.year))
+    caltest.next_day()
             
 class Stock:
     def __init__(self, name, ticker, value, volatility):
@@ -48,13 +121,16 @@ class Stock:
         self.value = self.value * (1 + pct)
 
 
-def generate_student(name) -> None:
-    loader = {}
-    temp_student = Student(name, income=random.randint(30000, 70000), 
-                 balance=random.randint(-2000, 2000), 
-                 debt=random.randint(0, 5000), assets = [])
-    loader[name.lower()] = [temp_student.income, temp_student.balance, temp_student.debt, temp_student.assets]
-    return loader
+def add_cash(student, amount):
+    student.balance += amount
+
+def print_game_status(student, calendar):
+    print('The date is ' + calendar[0] + ' ' + str(calendar[1]) + ', year ' + str(calendar[2]))
+    print(student.name + ' has $' + str(student.balance) + ' in the bank, makes $'
+          + str(student.income) + ' per year, and owes $' + str(student.debt))
+def print_date(calendar):
+    print('The date is ' + str(calendar[0]),' ', calendar[1], ', year ', calendar[2])
+
 
 
 # reference yearly income print(classroom['name'][0])
